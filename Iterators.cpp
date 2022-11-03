@@ -17,7 +17,14 @@ int main()
     cout << endl;
     // vector of pair implement using iterators
     vector<pair<int, int>> vecPair = {{1, 2}, {20, 30}, {95, 5}};
-    vector<pair<int, int>>::iterator it;
+
+    // vector<pair<int, int>>::iterator it;
+    // without declaring the iterator above we can use auto keyword to save the code lines
+
+    for (auto it = vecPair.begin(); it != vecPair.end(); ++it)
+    {
+        cout << it->first << " " << it->second << endl;
+    }
     // for (it = vecPair.begin(); it != vecPair.end(); ++it)
     // {
     //     // cout << (*it).first << " " << (*it).second << endl;
@@ -31,7 +38,13 @@ int main()
     //     cout << value.first << " " << value.second << endl;
     // }
 
-    for(auto)
+    // same code above can be implemented as below as a short format
+    for (auto &value : vecPair)
+    {
+        // value.first++;
+        // value.second++;
+        cout << value.first << " " << value.second << endl;
+    }
     // for (int &evalue : v)
     // {
     //     evalue++;
