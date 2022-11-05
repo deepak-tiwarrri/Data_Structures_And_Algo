@@ -8,10 +8,10 @@ int main()
     {
         int n, k;
         cin >> n >> k;
-        multiset<long, long> bags;
+        multiset<long long> bags;
         for (int i = 0; i < n; ++i)
         {
-            int candy_ct;
+            long long candy_ct;
             cin >> candy_ct;
             bags.insert(candy_ct);
         }
@@ -19,7 +19,7 @@ int main()
         for (int i = 0; i < k; ++i)
         {
             auto last_it = (--bags.end());
-            int candy_ct = *last_it;
+            long long candy_ct = *last_it;
             total_candies += candy_ct;
             bags.erase(last_it);
             bags.insert(candy_ct / 2);
