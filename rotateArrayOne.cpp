@@ -30,11 +30,29 @@ void leftRotateArrayOne(vector<int> &arr,int n){
     }
     arr[n-1] = temp;
 }
+void leftRotateArrayByK(vector<int> &arr,int k,int n){
+    // reverse(arr.begin()+(n-k),arr.end());
+    // reverse(arr.begin(),arr.begin()+(n-k));
+    // reverse(arr.begin(),arr.end());
+    k = k%n;
+    vector<int> temp (k,0);
+    int j=0;
+    for(int i=n-k;i<n;i++){
+        temp[j] = arr[i];
+        j++;
+    }
+    for(int i=n-k-1;i>=0;i--){
+        arr[i+k] = arr[i]; 
+    }
+    for(int i=0;i<k;i++){
+        arr[i] = temp[i];
+    }
 
+}
 int main(){
     
-    int n;
-    cin>>n;
+    int n,k;
+    cin>>n>>k;
     vector<int> v1;
     for (int i = 0; i < n; i++)
     {
@@ -46,7 +64,8 @@ int main(){
     cin>>d;
    //  int result = removeDuplicates(v1,v1.size());
    //  cout<<result<<endl;
-    leftRotateArrayOne(v1,v1.size());
+    leftRotateArrayByK(v1,k,v1.size());
+    // leftRotateArrayOne(v1,v1.size());
     for(auto &it:v1){
         cout<<it<<" ";
     }

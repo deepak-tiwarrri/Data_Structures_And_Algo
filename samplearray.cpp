@@ -4,8 +4,15 @@ int add(int a,int b){
    return (a+b);
 }
 int main(){
-   int sum;
-   sum = add(4,5);
-   cout<<sum<<endl;
+   int n = 4;
+   string s(n,'.');
+   vector<string> board(n);
+   for(int i=0;i<n;i++){
+      board[i] = s;
+   }
+   for(auto &it:board){
+      cout<<it<<" ";
+   }
+   // cout<<s<<endl;
    return 0;
 }
