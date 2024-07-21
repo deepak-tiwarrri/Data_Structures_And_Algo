@@ -1,5 +1,3 @@
-39
-3
-39
-2
-383
+13
+printed array after inversion
+2 3 6 7 8 9 
