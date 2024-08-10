@@ -50,7 +50,7 @@ int main()
     // {
     //     cout << v[i] << " " << (nge[i] == -1 ? -1 : v[nge[i]]) << endl;
     // }
-    for(auto &it:nge) cout<<it<<""
+    for(auto &it:nge) cout<<it<<"";
 
     return 0;
 }
