@@ -23,7 +23,7 @@ vector<int> twoSum(vector<int> &arr,int n,int target){
       }
       mpp[element] = i;
    }
-   return {}
+   return {-1,-1};
 }
 int main(){
    //code here
