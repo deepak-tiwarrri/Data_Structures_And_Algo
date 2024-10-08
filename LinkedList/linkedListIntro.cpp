@@ -46,15 +46,6 @@ Node* insertAtFirst(int value,Node* head){
    head = temp;
    return head;
 }
-Node* removeHead(Node *head){
-   //delete the head of linkes list
-   if(head==nullptr)return head;
-   Node* temp = head;
-   //point head to next and delete temp
-   head = head->next;
-   delete temp;
-   return head;
-}
 Node* insertAtTail(Node* head,int x){
    if(head==nullptr) return new Node(x);
    Node* temp = head;
@@ -62,6 +53,31 @@ Node* insertAtTail(Node* head,int x){
       temp = temp->next;
    }
    temp->next = new Node(x);
+   return head;
+}
+//u have to find X given and insert the given value before it
+Node* insertBeforeX(int X,int val,Node* head){
+   if(head==nullptr) return nullptr;
+   if(head->data==X){
+      return new Node(val,head);
+   }
+   //iterate and find the X and insert before it you can use prev pointer concept or just one pointer temp and check if next to next value
+   Node* prev = nullptr;
+   Node* temp = head;
+   // while (temp!=nullptr)
+   while(temp->next!=nullptr)
+   {
+      // if(temp->data==X){
+      if(temp->next->data==X){
+         // Node* newNode = new Node(val,temp);
+         Node* newNode = new Node(val,temp->next);
+         // prev->next = newNode;
+         temp->next = newNode;
+         break;
+      }
+      // prev = temp;
+      temp = temp->next;
+   }
    return head;
 }
 Node* deleteTail(Node* head){
@@ -72,6 +88,15 @@ Node* deleteTail(Node* head){
    }
    delete temp->next;
    temp->next = nullptr;
+   return head;
+}
+Node* removeHead(Node *head){
+   //delete the head of linkes list
+   if(head==nullptr)return head;
+   Node* temp = head;
+   //point head to next and delete temp
+   head = head->next;
+   delete temp;
    return head;
 }
 Node* removeKthNode(Node* head,int k){
@@ -90,6 +115,29 @@ Node* removeKthNode(Node* head,int k){
    delete delNode;
    return head;
 }
+Node* deleteNodeWithValueX(Node* &head,int X){
+   if(head==nullptr) return nullptr;
+   if(head->data==X){
+      Node* temp = head;
+      head = head->next;
+      delete temp;
+      return head;
+   }
+   //in else secenario where x can be in between the LL
+   //traverse the linkedlist then if the value found
+   Node* temp = head;
+   Node* prev = nullptr;
+   while(temp!=nullptr){
+      if(temp->data==X){
+         prev->next = temp->next;
+         delete temp;
+         return head;
+      }
+      prev = temp;
+      temp = temp->next;
+   }
+   return head;
+}
 int main(){
    //code here
    int n;
@@ -104,13 +152,15 @@ int main(){
    
    Node*  head = convertArr2all(arr);
    // Node* head = NULL;
-   insertAtFirst(2,head);
+   // insertAtFirst(2,head);
    // insertAtFirst(8,head);
    // insertAtFirst(10,head);
    // insertAtFirst(11,head);
    // head = removeHead(head);
    // head = removeKthNode(head,8);
    // head = insertAtTail(head,4);
+   // head = insertBeforeX(8,10,head);
+   head = deleteNodeWithValueX(head,5);
    printNode(head);
     return 0;
 }
