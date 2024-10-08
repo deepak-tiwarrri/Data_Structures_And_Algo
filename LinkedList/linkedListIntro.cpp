@@ -55,6 +55,15 @@ Node* removeHead(Node *head){
    delete temp;
    return head;
 }
+Node* insertAtTail(Node* head,int x){
+   if(head==nullptr) return new Node(x);
+   Node* temp = head;
+   while(temp->next!=nullptr){
+      temp = temp->next;
+   }
+   temp->next = new Node(x);
+   return head;
+}
 Node* deleteTail(Node* head){
    if(head==nullptr || head->next==nullptr) return nullptr;
    Node* temp = head;
@@ -95,12 +104,13 @@ int main(){
    
    Node*  head = convertArr2all(arr);
    // Node* head = NULL;
-   // insertAtFirst(2,head);
+   insertAtFirst(2,head);
    // insertAtFirst(8,head);
    // insertAtFirst(10,head);
    // insertAtFirst(11,head);
    // head = removeHead(head);
-   head = removeKthNode(head,8);
+   // head = removeKthNode(head,8);
+   // head = insertAtTail(head,4);
    printNode(head);
     return 0;
 }
