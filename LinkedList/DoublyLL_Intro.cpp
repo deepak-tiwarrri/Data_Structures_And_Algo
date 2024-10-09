@@ -96,6 +96,31 @@ Node* deleteTail(Node* &head){
     delete tail;
     return head;
 }
+void deleteGivenNode(Node* &node){
+    Node* prevNode = node->prev;
+    Node* nextNode = node->next;
+    if(nextNode==nullptr){
+        prevNode->next = nullptr;
+        node->prev = nullptr;
+    }else{
+        prevNode->next = nextNode;
+        nextNode->prev = prevNode;
+        node->prev = node->next = nullptr;
+        // delete node;
+    }
+        delete node;
+}
+//insertion in doubly linked list
+//code goes here
+Node* insertBeforeHead(Node* head,int X){
+    if(head==nullptr) return new Node(X);
+    //now if head is not null
+    // make new node and then insert it before head
+    Node* newNode = new Node(X,head,nullptr);
+    head->prev = newNode;
+    head = newNode;
+    return head;
+}
 void printDLL(Node* &head){
     Node* temp = head;
     while(temp!=nullptr){
@@ -107,7 +132,7 @@ void printDLL(Node* &head){
 int main(){
   
   //code here
-    int n;
+int n;
   cin >> n;
   vector<int> ans;
   for (int i = 0; i < n; i++) {
@@ -121,7 +146,9 @@ int main(){
   // head = sort012List(head);
     // head = deleteHead(head);
     // head = deleteTail(head);
-    head = deleteKthNode(head,6);
+    // head = deleteKthNode(head,6);
+    deleteGivenNode(head->next);
+    // head = insertBeforeHead(head,10);
   printDLL(head);
   return 0;
 }
