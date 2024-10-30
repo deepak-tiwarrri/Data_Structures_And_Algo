@@ -1,19 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
-void findSubsetSum(int indx, vector<int> &arr, int n, vector<int> &ds, int sum)
-{
-   if(indx==n) {
-      ds.push_back(sum);
-      return;
-   }
-   findSubsetSum(indx+1,arr,n,ds,sum+arr[indx]);
-   findSubsetSum(indx+1,arr,n,ds,sum);
-}
+// void findSubsetSum(int indx, vector<int> &arr, int n, vector<int> &ds, int sum)
+// {
+//    if(indx==n) {
+//       ds.push_back(sum);
+//       return;
+//    }
+//    findSubsetSum(indx+1,arr,n,ds,sum+arr[indx]);
+//    findSubsetSum(indx+1,arr,n,ds,sum);
+// }
 
-vector<int> subsetSums(vector<int> &arr, int n)
-{
+// vector<int> subsetSums(vector<int> &arr, int n)
+// {
+//    vector<int> ds;
+//    findSubsetSum(0, arr, n, ds, 0);
+//    sort(ds.begin(),ds.end());
+//    return ds;
+// }
+
+void findSubsetSum(int indx,int sum,vector<int> &arr,int n,vector<int> &ds){
+   if(indx==n){
+      ds.push_back(sum);
+      return;      
+   }
+   findSubsetSum(indx+1,sum+arr[indx],arr,n,ds);
+   //if not pick then sum will be same
+   findSubsetSum(indx+1,sum,arr,n,ds);
+}
+vector<int> subsetSums(vector<int> &arr,int n){
    vector<int> ds;
-   findSubsetSum(0, arr, n, ds, 0);
+   // sort(arr.begin(),arr.end());
+   findSubsetSum(0,0,arr,n,ds);
    sort(ds.begin(),ds.end());
    return ds;
 }
