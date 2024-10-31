@@ -25,6 +25,7 @@ int longestNonRepeatingSubstring(string &s)
          l = charMap[s[r]] +1;
       }
       maxLen = max(maxLen,r-l+1);
+      //storing in the map and then moving ahead
       charMap[s[r]] = r;
       r++;
    }
