@@ -99,5 +99,6 @@ int main()
    // int res = myAtoi(s);
    int res = sumOfBeauty(s);
    cout << res;
+
    return 0;
 }
