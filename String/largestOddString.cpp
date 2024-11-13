@@ -13,6 +13,7 @@ string largeOddNum(string &s){
             continue;
         }
     }
+    if(endIndex==-1) return "";
     // for(int i=startIndex;i<=endIndex;i++){
     //     if(s[i]=='0') continue;
     //     else{

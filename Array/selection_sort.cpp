@@ -46,7 +46,8 @@ int main(){
     vector<int> arr;
     for(int i=0;i<n;i++)
     {
-      int a;cin>>a;
+      int a;
+      cin>>a;
       arr.push_back(a);
     }
     
