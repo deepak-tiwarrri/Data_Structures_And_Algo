@@ -204,6 +204,22 @@ void printDLL(Node *&head)
     }
     cout << "nullptr" << endl;
 }
+//reverse doubly linked list
+Node* reverseDLL(Node* head){
+    if(head==nullptr || head->next==nullptr) return head;
+
+    Node* current = head;
+    Node* last = nullptr;
+    while(current!=nullptr){
+        last = current->prev;
+        current->prev = current->next;
+        current->next = last;
+        current = current->prev;
+    }
+    //after reversal last is the second last elment
+    return last->prev;
+
+}
 int main()
 {
 
@@ -226,7 +242,8 @@ int main()
     // head = deleteKthNode(head,6);
     // deleteGivenNode(head->next);
     // head = insertBeforeKthPosition(head, 10, 2);
-    insertBeforeGivenNode(head->next->next,10);
+    // insertBeforeGivenNode(head->next->next,10);
+    head= reverseDLL(head);
     // head = insertBeforeHead(head,10);
     printDLL(head);
     return 0;
