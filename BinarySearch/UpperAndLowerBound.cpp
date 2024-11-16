@@ -1,6 +1,47 @@
 // to find lower bound or upper bound array or vector should be in sorted format ascending order
 #include <bits/stdc++.h>
 using namespace std;
+int upperBound(vector<int> &nums, int x)
+{
+    // find smallest index such that arr[index]>x
+    int upperBoundIndex = nums.size();
+    int low = 0, high = nums.size() - 1;
+
+    while (low <= high)
+    {
+        int mid = low + (high - low) / 2;
+        if (nums[mid] > x)
+        {
+            upperBoundIndex = mid;
+            high = mid - 1;
+        }
+        else
+        {
+            low = mid + 1;
+        }
+    }
+    return upperBoundIndex;
+}
+int lowerBound(vector<int> &nums, int x)
+{
+    int n = nums.size();
+    int lowerBoundIndx = n;
+    int l = 0, h = n - 1;
+    while (l <= h)
+    {
+        int mid = l + (h - l) / 2;
+        if (nums[mid] >= x)
+        {
+            lowerBoundIndx = mid;
+            h = mid - 1;
+        }
+        else
+        {
+            l = mid + 1;
+        }
+    }
+    return lowerBoundIndx;
+}
 int main()
 {
     // int n;
