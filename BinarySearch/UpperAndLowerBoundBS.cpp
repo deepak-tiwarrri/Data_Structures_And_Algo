@@ -1,4 +1,5 @@
 // to find lower bound or upper bound array or vector should be in sorted format ascending order
+
 #include <bits/stdc++.h>
 using namespace std;
 int upperBound(vector<int> &nums, int x)
@@ -24,6 +25,7 @@ int upperBound(vector<int> &nums, int x)
 }
 int lowerBound(vector<int> &nums, int x)
 {
+    //smallest index such that arr[index]>=x
     int n = nums.size();
     int lowerBoundIndx = n;
     int l = 0, h = n - 1;
@@ -68,23 +70,23 @@ int main()
     //     return 0;
     // }
     // cout << *itr << endl;
+    // this has the time complexity of O(n) not O(log(n))
+    // auto itr = lower_bound(s.begin(), s.end(), 29);
+    // auto itr = s.upper_bound(5);
+    // auto itr = s.upper_bound(5);
+    // cout << (*itr) << endl;
 
-    // map & sets
-    int n;
-    cin >> n;
-    set<int> s;
-    map<int, int> m; // time complexity of log(n)
+    int n, x;
+    cin >> n >> x;
+    vector<int> nums;
     for (int i = 0; i < n; ++i)
     {
         int x;
         cin >> x;
-        s.insert(x);
+        nums.push_back(x);
     }
-    // this has the time complexity of O(n) not O(log(n))
-    // auto itr = lower_bound(s.begin(), s.end(), 29);
-    // auto itr = s.upper_bound(5);
-    auto itr = s.upper_bound(5);
-    cout << (*itr) << endl;
+    int res = lowerBound(nums, x);
+    cout << res << endl;
 
     return 0;
 }
