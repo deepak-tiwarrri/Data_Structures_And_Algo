@@ -19,6 +19,7 @@ using namespace std;
 //     }
 //     return nge;
 // }
+
 vector<int> nextGreaterElement(vector<int> &nums){
     stack<int> st;
     vector<int> nge(nums.size(),-1);
