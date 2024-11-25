@@ -39,16 +39,20 @@ int roseGarden(int n, vector<int> nums, int k, int m)
       return -1;
    int minEle = *min_element(nums.begin(), nums.end());
    int maxEle = *max_element(nums.begin(), nums.end());
-   int low = minEle,high= maxEle;
-    while(low<=high){
-        int mid = low + (high-low)/2;
-        if(bouquetsRequired(mid,nums,k,m)==true){
-           high = mid-1;it sgit
-        }else{
-          low = mid+1;
-        }
-    }
-    return low;
+   int low = minEle, high = maxEle;
+   while (low <= high)
+   {
+      int mid = low + (high - low) / 2;
+      if (bouquetsRequired(mid, nums, k, m) == true)
+      {
+         high = mid - 1;
+      }
+      else
+      {
+         low = mid + 1;
+      }
+   }
+   return low;
 }
 int main()
 {
