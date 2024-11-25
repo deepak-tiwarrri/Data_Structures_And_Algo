@@ -29,30 +29,7 @@ int findMin() {
    return minstack.top();
 }
 
-vector<vector<int>> zigzagLevelOrder(TreeNode* root){
-    vector<vector<int>> ans;
-    int level=0;
-    if(root==NULL) return ans;
-    queue<TreeNode*> nodeQueue;
-    nodeQueue.push(root);
-    while(!nodeQueue.empty()){
-        int size = nodeQueue.size();
-        vector<int> atThisLevel(size);
-        for(int i=0;i<size;i++){
-            TreeNode* node = nodeQueue.front();
-            if(node->left) nodeQueue.push(node->left);
-            if(node->right) nodeQueue.push(node->right);
-            nodeQueue.pop();
-            atThisLevel.push_back(node->val);
-        }
-        level++;
-        if(level%2==0){
-            reverse(atThisLevel.begin(),atThisLevel.end());
-        }
-        ans.push_back(atThisLevel);
-    }
-    return ans;
-}
+
 int main()
 {
     int n, m, t;
