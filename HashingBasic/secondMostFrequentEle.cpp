@@ -44,27 +44,36 @@ int secondMostFrequentElement(vector<int> &nums)
    // }
    //    return secMaxEle;
 
-   //optimal approach
-   unordered_map<int,int> mpp;
+   // optimal approach
+   unordered_map<int, int> mpp;
    int n = nums.size();
-   for(auto &it:nums) mpp[it]++;
-   int maxFreq = 0,secMaxFreq = 0;
-   int maxEle = -1,secMaxEle = -1;
-   for(auto &it:mpp){
+   for (auto &it : nums)
+      mpp[it]++;
+   int maxFreq = 0, secMaxFreq = 0;
+   int maxEle = -1, secMaxEle = -1;
+   for (auto &it : mpp)
+   {
       int freq = it.second;
       int ele = it.first;
-      if(freq>maxFreq){
+      if (freq > maxFreq)
+      {
          secMaxFreq = maxFreq;
          maxFreq = freq;
          secMaxEle = maxEle;
          maxEle = ele;
-      }else if(freq==maxFreq){
-         maxEle = min(maxEle,ele);
-      }else if(freq>secMaxFreq){
+      }
+      else if (freq == maxFreq)
+      {
+         maxEle = min(maxEle, ele);
+      }
+      else if (freq > secMaxFreq)
+      {
          secMaxFreq = freq;
          secMaxEle = ele;
-      }else if(freq==secMaxFreq){
-         secMaxEle = min(secMaxEle,ele);
+      }
+      else if (freq == secMaxFreq)
+      {
+         secMaxEle = min(secMaxEle, ele);
       }
    }
    return secMaxEle;
