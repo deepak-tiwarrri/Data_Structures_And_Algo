@@ -359,17 +359,17 @@ Node *findMiddleList(Node *head)
   }
   return slow;
 }
-Node* findLength(Node *head)
+Node *findLength(Node *head)
 {
   int len = 1;
   Node *temp = head;
-  while (temp->next!=nullptr)
+  while (temp->next != nullptr)
   {
     len += 1;
     temp = temp->next;
   }
   // return len;
-  cout<<len<<endl;
+  cout << len << endl;
   return temp;
 }
 Node *mergeTwoList(Node *list1, Node *list2)
@@ -525,11 +525,11 @@ int main()
   // Node *head2 = convert2LL(nums2);
   Node *head = convert2LL(nums);
   // head = removeKthEle(head, 15);
-  // bool isPalindromic = isPalindrome(head);
-  //   if (isPalindromic)
-  //  cout << "Palidrome" << endl;
-  //   else
-  //  cout << "Not Palindrom" << endl;
+  bool isPalindromic = isPalindrome(head);
+  if (isPalindromic)
+    cout << "Palidrome" << endl;
+  else
+    cout << "Not Palindrom" << endl;
   // head = findMiddle(head);
   // head = oddEvenList(head);
   // head = deleteMiddle(head);
@@ -539,7 +539,8 @@ int main()
   // head = reverseKthGroupNode(head, k);
   // head = rotateKTimeLL(head, k);
   // int result = findLength(head);
-  head = findLength(head);
+  // head = findLength(head);
+
   printList(head);
   // cout<<result;
   // printList(head);
