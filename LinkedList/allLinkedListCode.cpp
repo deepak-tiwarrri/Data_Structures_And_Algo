@@ -432,38 +432,38 @@ Node *findKthNode(Node *temp, int k)
   }
   return temp;
 }
-// Node *reverseLL(Node *head)
-// {
-//   if (head == nullptr || head->next == nullptr)
-//     return head;
-//   Node *newHead = reverseLL(head->next);
-//   Node *front = head->next;
-//   front->next = head;
-//   head->next = nullptr;
-//   return newHead;
-// }
-// Node *reverseKthGroupNode(Node *head, int k)
-// {
-//   Node *temp = head;
-//   Node *prevNode = nullptr;
-//   while (temp)
-//   {
-//     Node *kthNode = findKthNode(temp, k);
-//     Node *nextNode = kthNode->next;
-//     if (kthNode == nullptr)
-//       if (prevNode)
-//         prevNode->next = nextNode;
-//     break;
+Node *reverseLL(Node *head)
+{
+  if (head == nullptr || head->next == nullptr)
+    return head;
+  Node *newHead = reverseLL(head->next);
+  Node *front = head->next;
+  front->next = head;
+  head->next = nullptr;
+  return newHead;
+}
+Node *reverseKthGroupNode(Node *head, int k)
+{
+  Node *temp = head;
+  Node *prevNode = nullptr;
+  while (temp)
+  {
+    Node *kthNode = findKthNode(temp, k);
+    Node *nextNode = kthNode->next;
+    if (kthNode == nullptr)
+      if (prevNode)
+        prevNode->next = nextNode;
+    break;
 
-//     kthNode->next = nullptr;
-//     reverseLL(temp);
-//     if (temp == head)
-//       head = kthNode;
-//     prevNode = temp;
-//     temp = nextNode;
-//   }
-//   return head;
-// }
+    kthNode->next = nullptr;
+    reverseLL(temp);
+    if (temp == head)
+      head = kthNode;
+    prevNode = temp;
+    temp = nextNode;
+  }
+  return head;
+}
 Node *findKthLastNode(Node *temp, int k)
 {
   int cnt = 1;
