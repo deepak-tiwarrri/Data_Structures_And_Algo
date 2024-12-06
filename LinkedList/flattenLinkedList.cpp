@@ -5,7 +5,7 @@ public:
    int data;
    Node *next;
    Node *child;
-   Node() : data(0), next(nullptr), child(nullptr){};
+   Node() : data(0), next(nullptr), child(nullptr) {};
    Node(int x) : data(x), next(nullptr), child(nullptr) {}
    Node(int x, Node *next, Node *child) : data(x), next(next), child(child) {}
 };
@@ -32,27 +32,50 @@ void printList(Node *head)
    }
    cout << "nullptr";
 }
-Node* mergeTwoList(Node* list1,Node* list2){
-	Node* dummyNode = new Node(-1);
-   Node* temp = dummyNode;
-   while(list1 && list2){
-      if(list1->data<list2->data){
+Node *mergeTwoList(Node *list1, Node *list2)
+{
+   Node *dummyNode = new Node(-1);
+   Node *temp = dummyNode;
+   while (list1 && list2)
+   {
+      if (list1->data < list2->data)
+      {
          temp->child = list1;
          list1 = list1->child;
-      }else{
+      }
+      else
+      {
          temp->child = list2;
-         list2= list2->child;
+         list2 = list2->child;
       }
       temp->next = nullptr;
       temp = temp->child;
    }
-   if(list1) temp->child = list1;
-   else temp->child = list2;
-	return dummyNode->child;
+   if (list1)
+      temp->child = list1;
+   else
+      temp->child = list2;
+   return dummyNode->child;
 }
-Node* flattenLinkedList(Node* head) 
+Node *flattenLinkedList(Node *head)
 {
-	// Write your code here
+   // Write your code here
+   Node *temp = head;
+   vector<int> ans;
+   while (temp != nullptr)
+   {
+      Node *t2 = temp;
+      while (t2 != nullptr)
+      {
+         ans.push_back(t2->data);
+         t2 = t2->child;
+      }
+      temp = temp->next;
+   }
+   sort(ans.begin(), ans.end());
+   Node *ansHead = convert2LL(ans);
+   return ansHead;
+
    if(head==nullptr || head->next==nullptr) return head;
    Node* newHead = flattenLinkedList(head->next);
    return mergeTwoList(newHead,head);
@@ -61,23 +84,19 @@ int main()
 {
    // code here
    int n;
-   cin>>n;
+   cin >> n;
    vector<vector<int>> number;
-   for(int i=0;i<n;++i){
+   for (int i = 0; i < n; ++i)
+   {
       int n1;
-      cin>>n1;
+      cin >> n1;
       vector<int> temp(n1);
-      for(int j=0;j<n1;++j){
-         cin>>temp[j];
+      for (int j = 0; j < n1; ++j)
+      {
+         cin >> temp[j];
       }
       number.push_back(temp);
    }
-   for (auto &it:number) {
-        for (auto &num :it) {
-            cout << num << " ";
-        }
-        cout << endl;
-    }
 
    // Node* head = convert2LL(nums);
    // head = flattenLinkedList(head);
