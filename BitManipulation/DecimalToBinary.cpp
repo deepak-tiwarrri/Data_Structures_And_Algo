@@ -17,33 +17,8 @@ string decimalToBinary(int num)
    return res;
 }
 
-void swapToNumber(int a, int b)
-{
-   // use xor operator
-   //  int temp = a;
-   //  a = b;
-   //  b = temp;
 
-   // using xor operator without using temp
-   a = a ^ b;
-   b = a ^ b;
-   b = a ^ b;
-}
 
-// set i bit
-int setBit(int n, int i)
-{
-   return (1 << i) ^ n;
-}
-
-// clear i bit
-int clearBit(int n, int i)
-{
-   // first try to reach that position using left shift
-   // then toggle it using negation ~
-   // then use and ooperator
-   return (n & ~(1 << i));
-}
 
 // toggle the bit
 int toggleBit(int n, int i)
