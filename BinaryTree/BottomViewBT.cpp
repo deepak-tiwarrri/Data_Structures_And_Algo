@@ -16,31 +16,28 @@ class TreeNode{
         right = nullptr;
     }
 };
-vector<int> topView(TreeNode* root){
+vector<int> bottomView(TreeNode* root){
     vector<int> ans;
     if(root==nullptr) return ans;
-    map<int,int> mp;
     queue<pair<TreeNode*,int>> q;
+    map<int,int> mpp;
     q.push({root,0});
-
     while(!q.empty()){
         auto it = q.front();
         q.pop();
+        TreeNode* node = it.first;
         int level = it.second;
-        TreeNode* current = it.first;
-        if(mp.find(level)==mp.end()) mp[level] = current->data;
-        if(current->left){
-            q.push({current->left,level-1});
+        mpp[level] = node->data;
+        if(node->left){
+            q.push({node->left,level-1});
         }
-        if(current->right){
-            q.push({current->right,level+1});
+        if(node->right){
+            q.push({node->right,level+1});
         }
-
     }
-    for(auto &it:mp){
-        ans.push_back(it.second);   
+    for(auto &it:mpp){
+        ans.push_back(it.second);
     }
-
     return ans;
 }
 void createTree(TreeNode* root,vector<int> &arr){
@@ -65,15 +62,12 @@ void createTree(TreeNode* root,vector<int> &arr){
     }
 }
 int main(){
-     int n;
-     cin>>n;
-     vector<int> arr(n,0);
-    for(int i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    TreeNode* root = nullptr;
-    createTree(root,arr);
-    vector<int> ans = topView(root);
+    TreeNode* root = new TreeNode(10);
+    root->left = new TreeNode(20);
+    root->right = new TreeNode(30);
+    root->left->right = new TreeNode(60);
+    root->left->left = new TreeNode(40);
+    vector<int> ans = bottomView(root);
     for(auto &it:ans){
         cout<<it<<" ";
     }
