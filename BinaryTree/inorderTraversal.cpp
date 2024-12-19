@@ -2,6 +2,7 @@
 using namespace std;
 class TreeNode
 {
+
 public:
    int data;
    TreeNode *left;

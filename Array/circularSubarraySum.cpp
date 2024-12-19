@@ -1,6 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 
 // Function to find maximum sum of non-circular subarray using Kadane's algorithm
