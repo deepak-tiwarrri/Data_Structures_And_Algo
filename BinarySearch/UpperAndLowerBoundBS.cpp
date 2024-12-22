@@ -26,6 +26,7 @@ int upperBound(vector<int> &nums, int x)
 int lowerBound(vector<int> &nums, int x)
 {
     //smallest index such that arr[index]>=x
+    //first index greater than equal to x
     int n = nums.size();
     int lowerBoundIndx = n;
     int l = 0, h = n - 1;
