@@ -22,44 +22,45 @@ public:
 class Stack
 {
 public:
-   int currSize;
-   Node *topp;
+   int size;
+   Node* topPointer;
    Stack()
    {
-      currSize = 0;
-      topp = NULL;
+      topPointer = nullptr;
+      size = 0;
    }
    void push(int x)
    {
-      Node *temp = new Node(x);
-      temp->next = topp;
-      topp = temp;
-      cout << "element pushed" << endl;
-      currSize++;
+
+      Node* temp = new Node(x);
+      temp->next = topPointer;
+      topPointer = temp;
+      size++;
    }
    int pop()
    {
-      if (topp == nullptr){
-         // cout<<"stack is empty"<<endl;
-         return -1;
-      }
-      int popped = topp->data;
-      Node *temp = topp;
-      topp = topp->next;
-      delete temp;
-      currSize--;
-      return popped;
+      if(size==0) return -1;
+      Node* temp = topPointer;
+      int element = temp->data;
+      topPointer = topPointer->next;
+      size--;
+      delete(temp);
+      return element;
    }
    int top()
    {
-      return topp->data;
+      if(size==0) return -1;
+      return topPointer->data;
    }
-   int size()
+   int Size()
    {
-      return currSize;
+      return size;
+   }
+   bool isEmpty(){
+      return (size==0);
    }
    void printStackNode(){
-      Node* temp = topp;
+      Node* temp = topPointer;
       while(temp->next!=nullptr){
          cout<<temp->data<<" ";
          temp = temp->next;
@@ -82,7 +83,7 @@ int main()
    cout << "popped value" <<" "<< stt.pop()<<" " << endl;
    cout << "popped value" <<" "<< stt.pop()<<" " << endl;
    cout << "top value" <<" "<< stt.top()<<endl;
-   cout << "size of stack" <<" "<< stt.size() << endl;
+   cout << "size of stack" <<" "<< stt.Size() << endl;
    stt.printStackNode();
    return 0;
 }

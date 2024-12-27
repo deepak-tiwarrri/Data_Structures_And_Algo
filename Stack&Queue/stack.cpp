@@ -12,9 +12,11 @@ int main(){
    int n;
    cin>>n;
    stack<int> s;
-
-   for(int i=0;i<n;i++){
-      
+   s.push(5);
+   s.push(19);
+   while(!s.empty()){
+      cout<<s.top()<<endl;
+      s.pop();
    }
     return 0;
 }

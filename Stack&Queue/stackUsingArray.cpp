@@ -2,48 +2,44 @@
 using namespace std;
 class Stack
 {
-   int *arr;
-   int tpp, currSize, sz;
+   int *stackArray;
+   int topPointer,capacity,stackSize=0;
 
 public:
    // make constructor
-   Stack()
+   Stack(int size=1000)
    {
-      tpp = -1;
-      sz = 10;
-      currSize = 0;
-      arr = new int[sz];
+     topPointer = -1;
+     capacity = size;
+     stackArray = new int[capacity];
+
    }
    void push(int x)
    {
-      if (currSize == sz)
-      {
-         cout << "stack is full";
-         return;
-      }
-      tpp++;
-      arr[tpp] = x;
-      currSize++;
+      if(stackSize>=capacity-1)return;
+      topPointer++;
+      stackArray[topPointer] = x;
+      stackSize++;
    }
    int pop()
    {
-      if (currSize == 0)
-      {
-         cout << "stack is empty"<<endl;
-         return -1;
-      }
-      int val = arr[tpp];
-      tpp--;
-      currSize--;
-      return val;
+      if(stackSize==0) return -1;
+      //else pop
+      int element = stackArray[topPointer];
+      topPointer--;
+      stackSize--;
+      return element;
    }
    int top()
    {
-      return arr[tpp];
+      return stackArray[topPointer];
    }
    int size()
    {
-      return currSize;
+      return stackSize;
+   }
+   bool isEmpty(){
+      return (stackSize==0);
    }
 };
 int main()

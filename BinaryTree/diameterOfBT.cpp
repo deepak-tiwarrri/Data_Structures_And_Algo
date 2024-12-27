@@ -35,14 +35,25 @@ int diameterOfBinaryTree(TreeNode *root)
    findHeight(root, diameter);
    return diameter;
 }
+TreeNode* createTree(const vector<int>& nodes, int index = 0) {
+    if (index < nodes.size() && nodes[index] != -1) {
+        TreeNode* root = new TreeNode(nodes[index]);
+        root->left = createTree(nodes, 2 * index + 1);
+        root->right = createTree(nodes, 2 * index + 2);
+        return root;
+    }
+    return nullptr;
+}
 int main()
 {
    // code here
-   TreeNode *root = new TreeNode(1);
-   root->left = new TreeNode(2);
-   root->right = new TreeNode(3);
-   root->left->right = new TreeNode(5);
-   root->left->left = new TreeNode(4);
+   int n;
+   cin>>n;
+   vector<int> nums(n);
+   for(int i=0;i<n;i++){
+      cin>>nums[i];
+   }
+   TreeNode* root = createTree(nums,0);
    int res = diameterOfBinaryTree(root);
    cout << res << endl;
    return 0;
