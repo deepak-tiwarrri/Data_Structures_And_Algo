@@ -15,10 +15,10 @@ class Queue{
    void push(int x){
       if(start==-1 && end==-1) start++;
    //also if(end = -1) then it means that 
-      
       end++;
       currSize++;
       arr[end%size] = x;
+      //end = (end+1)%size
    }
    int pop(){
       if(start==end) return -1;
@@ -49,6 +49,5 @@ int main(){
     cout<<q.pop()<<endl;
     cout<<q.Size()<<endl;
     cout<<q.top()<<endl;
-
     return 0;
 }

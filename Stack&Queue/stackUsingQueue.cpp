@@ -1,53 +1,48 @@
-#include<bits/stdc++.h>
-using namespace  std;
+//stack using queue
 
-class MyStack {
-public:
+using namespace std;
+#include <bits/stdc++.h>
+class QueueStack{
+    public:
     queue<int> q;
-    MyStack() {
+    QueueStack(){
+
     }
-    
-    void push(int x) {
+    void push(int x){
+        int size = q.size();
         q.push(x);
-    }
-    
-    int pop() {
-        int sz = q.size();
-        for(int i=0;i<sz;i++){
+        for(int i=0;i<size;i++){
             q.push(q.front());
             q.pop();
         }
-        int val = q.front();
+    }
+    int pop(){
+        int data = q.front();
         q.pop();
-        return val;
+        return data;
     }
-    
-    int top() {
-      //   int val = q.rear();
-      //   return val;
+    int top(){
+        return q.front();
     }
-    
-    bool empty() {
+    int isEmpty(){
         return q.empty();
     }
+    int size(){
+        return q.size();
+    }
+
 };
-int main(){
-   //code here
-    
-   MyStack mystack;
-   mystack.push(9);
-   mystack.push(7);
-   mystack.push(8);
-   mystack.pop();
-   mystack.top();
-   mystack.push(19);
+int main() {
+    // code here
+   cin.tie(0);cout.tie(0);
+    QueueStack qs;
+    qs.push(9);
+    qs.push(5);
+    qs.push(10);
+    qs.top();
+    qs.pop();
+    qs.top();
+
+
     return 0;
 }
-/**
- * Your MyStack object will be instantiated and called as such:
- * MyStack* obj = new MyStack();
- * obj->push(x);
- * int param_2 = obj->pop();
- * int param_3 = obj->top();
- * bool param_4 = obj->empty();
- */

@@ -22,33 +22,37 @@ public:
 class Queue
 {
    public:
-   int currSize = 0;
-   Node *start = nullptr;
-   Node *end = nullptr;
-
+   int queueSize = 0;
+   Node* start = NULL;
+   Node* end = NULL;
 public:
    void push(int x)
    {
-      Node *temp = new Node(x);
-      if (start == nullptr && end == nullptr)
-      {
-         start = end = temp;
+      //create a new linked list
+      Node* topPointer = new Node(x);
+      end->next = topPointer;
+      if(start==nullptr){
+         start = topPointer;
       }
-      else
-      {  
-         end->next = temp;
-         end = temp;
-      }
-      currSize += 1;
+      end = topPointer;
+      queueSize++;
+
    }
    int pop()
    {
-      if(!start) return -1;
-      Node *temp = start;
-      int poppedVal = start->data;
-      start = start->next;
-      currSize -= 1;
-      return poppedVal;
+     if(start==nullptr) return -1;
+     if(start==end && queueSize==1){
+         start = nullptr;
+         end = nullptr;
+         return -1;
+     }
+     //point temp  to start and then delete the temp
+     Node* temp = start;
+     int popValue = temp->data;
+     start = start->next;
+     queueSize--;
+     delete temp;
+      return popValue;
    }
    int top()
    {
@@ -58,7 +62,11 @@ public:
    }
    int size()
    {
-      return currSize;
+      return queueSize;
+   }
+   bool isEmpty(){
+      if(start==nullptr) return -1;
+      return queueSize==0;//start=end=nullptr;
    }
    void printStackNode()
    {
