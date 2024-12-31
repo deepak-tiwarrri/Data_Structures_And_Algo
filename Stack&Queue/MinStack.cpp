@@ -17,14 +17,15 @@ public:
       //    mini = val;
       // }
       // stPair.push({val, min(stPair.top().second, val)});
-      long long value = (long long )val;
-      if(st.empty()){
-         st.push(value);
-         mini = value;
-      }
-      if(value<st.top()){
-         mini = value;
-         st.push((2*value*1LL-mini));
+      if(st.empty()) st.push(val);
+      else{
+         if(val>mini){
+            st.push(val);
+         }else{
+            //else val is less
+            st.push((2*1LL*val-mini));
+            mini = val;
+         }
       }
    }
 
@@ -32,11 +33,11 @@ public:
    {
       // stPair.pop();
       if(st.empty()) return;
-      if(st.top()<mini){
-         mini = 2*mini - st.top();
-         st.pop();
-      }else{
-         st.pop();
+      long long x = st.top();
+      st.pop();
+      if(x<mini){
+         //i have to changge the mini
+         mini = 2*mini-x;
       }
    }
 
@@ -45,12 +46,13 @@ public:
       // return stPair.top().first;
       if(st.empty()) return -1;
       if(st.top()<mini) return mini;
-      return st.top();
+      else return st.top();
    }
 
    int getMin()
    {
       // return stPair.top().second;
+      if(st.empty()) return -1;
       return mini;
    }
 };

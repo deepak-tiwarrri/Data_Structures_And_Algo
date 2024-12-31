@@ -1,5 +1,4 @@
 //stack using queue
-
 using namespace std;
 #include <bits/stdc++.h>
 class QueueStack{
