@@ -15,7 +15,7 @@ vector<vector<int>> mergeOverlappingIntervals(vector<vector<int>> &arr)
    //       continue;
    //    }
    //    for (int j = i + 1; j < arr.size(); j++)
-   //    {
+   //    {  
    //       if (arr[j][0] <= end)
    //       {
    //          // update the end
