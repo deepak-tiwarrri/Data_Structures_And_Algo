@@ -51,23 +51,27 @@ int mostFrequentElement(vector<int> &nums)
     //     }
     // }
     // return el;
-    unordered_map<int,int> mpp;
-    int maxOccurence = 0;
-    int result = -1;
+    unordered_map<int, int> countFrequencyMap;
+    int n = nums.size();
+    int result = 0;
+    int maxElement = -1;
     for (auto &it : nums)
     {
-        mpp[it]++;
+        countFrequencyMap[it]++;
     }
-    for(auto &it:mpp){
-        if(it.second>maxOccurence){
-            maxOccurence= it.second;
-            result = it.first; 
-        }else if(it.second ==maxOccurence){
-            result = min(result,it.first);
+    for (auto &it : countFrequencyMap)
+    {
+        if (it.second > maxElement)
+        {
+            maxElement = it.second;
+            result = it.first;
+        }
+        else if (it.second == maxElement)
+        {
+            result = min(it.first, result);
         }
     }
     return result;
-    
 }
 int main()
 {
