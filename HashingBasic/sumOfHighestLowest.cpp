@@ -18,14 +18,8 @@ int sumHighestAndLowestFrequency(vector<int> &nums)
     for (auto &it : freqHash)
     {
         int freq = it.second;
-        if (freq > highestFrequency)
-        {
-            highestFrequency = max(highestFrequency, freq);
-        }
-        if (freq < lowestFrequency)
-        {
-            lowestFrequency = min(lowestFrequency, freq);
-        }
+        highestFrequency = max(highestFrequency, freq);
+        lowestFrequency = min(lowestFrequency, freq);
     }
     return lowestFrequency + highestFrequency;
 }
@@ -36,11 +30,12 @@ int main()
     // code here
     int n;
     cin >> n;
-    vector<int> nums(n,0);
-    for(auto &it:nums){
-        cin>>it;
+    vector<int> nums(n, 0);
+    for (auto &it : nums)
+    {
+        cin >> it;
     }
     int res = sumHighestAndLowestFrequency(nums);
-    cout<<res<<endl;
+    cout << res << endl;
     return 0;
 }
