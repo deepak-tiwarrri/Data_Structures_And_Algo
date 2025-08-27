@@ -3,18 +3,7 @@ using namespace std;
 int missingNumber(vector<int> &nums){
     //go from i to nums.size() inclusive
     // brute force approach
-    for(int i=0;i<=nums.size();++i){
-        bool flag = false;
-        for(int j=0;j<nums.size();++j){
-            // code goes here
-            if(nums[j]==i){
-                flag = true;
-                break;
-            }
-        }
-        if(flag == false) return i;
-    }
-    return -1;
+    
     //second appraoch using hashing SC:O(n+1)
     int n = nums.size();
     int freqHash[n+1] = {0};
