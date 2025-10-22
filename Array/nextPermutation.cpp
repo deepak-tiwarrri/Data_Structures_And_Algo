@@ -32,6 +32,7 @@ vector<int> nextPermutationNumber(vector<int> &nums)
    reverse(nums.begin() + index + 1, nums.end());
    return nums;
 }
+
 int main()
 {
    // code here

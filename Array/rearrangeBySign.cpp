@@ -28,20 +28,20 @@ vector<int> rearrangeBySign(vector<int> &nums)
    // SC: O(n)
 
    // optimal approach
-   int pos = 0, neg = 1;
+   int posIndex = 0, negIndex = 1;
    int n = nums.size();
    vector<int> ans(n, 0);
-   for (int i = 0; i < nums.size(); i++)
+   for (auto &ele : nums)
    {
-      if (nums[i] > 0)
+      if (ele > 0)
       {
-         ans[pos] = nums[i];
-         pos += 2;
+         ans[posIndex] = ele;
+         posIndex += 2;
       }
       else
       {
-         ans[neg] = nums[i];
-         neg += 2;
+         ans[negIndex] = ele;
+         negIndex += 2;
       }
    }
    return ans;
