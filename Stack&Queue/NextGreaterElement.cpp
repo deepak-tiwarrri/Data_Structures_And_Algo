@@ -12,7 +12,7 @@ using namespace std;
 //         }
 //         st.push(i);
 //         st.pop();
-//     }
+//     }b
 //     while (!st.empty())
 //     {
 //         nge[st.top()] = -1;

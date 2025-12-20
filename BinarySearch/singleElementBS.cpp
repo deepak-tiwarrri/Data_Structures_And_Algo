@@ -63,6 +63,7 @@ int singleNonDuplicate(vector<int> &nums)
    //  }
    //  return -1;
 }
+//[(even,odd) (even,odd) (even,odd) single element (odd,even) (odd,even)]
 int main()
 {
    // code here

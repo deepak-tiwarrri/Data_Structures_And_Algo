@@ -22,24 +22,44 @@ public:
 };
 vector<vector<int>> levelOrder(TreeNode *root)
 {
-   queue<TreeNode *> q;
+   // queue<TreeNode *> q;
+   // vector<vector<int>> ans;
+   // if (root == nullptr)
+   //    return ans;
+   // q.push(root);
+   // while (!q.empty())
+   // {
+   //    int queueSize = q.size();
+   //    vector<int> level;
+   //    for (int i = 0; i < queueSize; i++)
+   //    {
+   //       TreeNode *current = q.front();
+   //       q.pop();
+   //       if (current->left != nullptr)
+   //          q.push(current->left);
+   //       if (current->right != nullptr)
+   //          q.push(current->right);
+   //       level.push_back(current->data);
+   //    }
+   //    ans.push_back(level);
+   // }
+   // return ans;
    vector<vector<int>> ans;
-   if (root == nullptr)
+   queue<TreeNode *> q;
+   if(root==nullptr)
       return ans;
    q.push(root);
-   while (!q.empty())
-   {
-      int queueSize = q.size();
+   while(!q.empty()){
+      int size = q.size();
       vector<int> level;
-      for (int i = 0; i < queueSize; i++)
-      {
-         TreeNode *current = q.front();
+      for (int i = 0; i < size;i++){
+         TreeNode *node = q.front();
          q.pop();
-         if (current->left != nullptr)
-            q.push(current->left);
-         if (current->right != nullptr)
-            q.push(current->right);
-         level.push_back(current->data);
+         if(node->left)
+            q.push(node->left);
+         if(node->right)
+            q.push(node->right);
+         level.push_back(node->data);
       }
       ans.push_back(level);
    }
