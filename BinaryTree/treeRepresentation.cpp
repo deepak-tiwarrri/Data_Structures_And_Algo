@@ -5,19 +5,14 @@ class Node
 public:
    int data;
    Node *left;
-   Node *right;
+   Node* right;
 
-   Node(int data1, Node *left1, Node *right1)
+public:
+   Node(int data, Node *left = nullptr, Node *right = nullptr)
    {
-      data = data1;
-      left = left1;
-      right = right1;
-   }
-   Node(int data1)
-   {
-      data = data1;
-      left = nullptr;
-      right = nullptr;
+      this->data = data;
+      this->left = left;
+      this->right = right;
    }
 };
 int main()
