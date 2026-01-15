@@ -10,68 +10,66 @@ public:
 
    TreeNode(int x) : data(x), left(NULL), right(NULL) {}
 };
-bool isLeaf(TreeNode *root)
+bool isLeafNode(TreeNode *root)
 {
-   if (root->left == nullptr && root->right == nullptr)
-      return true;
-   else
-      return false;
+   return root->right == NULL && root->left == NULL ? true : false;
 }
-void addLeftBoundary(TreeNode *root, vector<int> &res)
+void addLeavesBoundary(vector<int> &res, TreeNode *root)
 {
-   // start from the left
-   TreeNode *curr = root->left;
-   while (curr)
+   auto currNode = root;
+   if (currNode->left)
+      addLeavesBoundary(res, currNode->left);
+   if (isLeafNode(currNode))
    {
-      if (!isLeaf(root))
-         res.push_back(curr->data);
-      if (curr->left)
-         curr = curr->left;
+      res.push_back(currNode->data);
+      return;
+   }
+   else
+      addLeavesBoundary(res, currNode->right);
+}
+void addLeftBoundary(vector<int> &res, TreeNode *root)
+{
+   TreeNode *currNode = root;
+   while (currNode)
+   {
+      if (!isLeafNode(currNode))
+         res.push_back(currNode->data);
+      if (currNode->left)
+         currNode = currNode->left;
       else
-         curr = curr->right;
+         // addLeftBoundary(res,currNode->right)
+         currNode = currNode->right;
    }
 }
-void addLeavesNodes(TreeNode *root, vector<int> &res)
+void addRightBoundary(vector<int> &res, TreeNode *root)
 {
-   // use preorder traversal root left right
-   if (isLeaf(root))
-      res.push_back(root->data);
-   // move as left as possible
-   if (root->left)
-   {
-      addLeavesNodes(root->left, res);
-   }
-   else
-   {
-      addLeavesNodes(root->right, res);
-   }
-}
-void addRightBoundary(TreeNode *root, vector<int> &res)
-{
-   // make temp array add the value and then store in res in reverse order
+   TreeNode *currNode = root;
    vector<int> temp;
-   TreeNode *curr = root->right;
-   while (curr)
+   while (currNode)
    {
-      if (!isLeaf(root))
-         temp.push_back(curr->data);
-      if (curr->right)
-         curr = curr->right;
+      if (!isLeafNode(currNode))
+         temp.push_back(currNode->data);
+      if (currNode->right)
+         currNode = currNode->right;
+
       else
-         curr = curr->left;
+         currNode = currNode->left;
+   }
+   for (int i = temp.size() - 1; i >= 0; i--)
+   {
+      res.push_back(temp[i]);
    }
 }
 vector<int> boundary(TreeNode *root)
 {
-   // first push the first root node in ans
    vector<int> res;
    if (root == NULL)
       return res;
-   if (!isLeaf(root))
+   if (!isLeafNode(root))
       res.push_back(root->data);
-   addLeftBoundary(root, res);
-   addLeavesNodes(root, res);
-   addRightBoundary(root, res);
+   addLeftBoundary(res, root->left);
+   addLeavesBoundary(res, root);
+   addRightBoundary(res, root->right);
    return res;
 }
 int main()
@@ -85,9 +83,9 @@ int main()
    root->left->left->left = new TreeNode(4);
    root->left->left->right = new TreeNode(4);
    vector<int> res = boundary(root);
-   for (int i = 0; i < res.size(); i++)
+   for (auto &ele : res)
    {
-      cout << res[i] << " " << endl;
+      cout << ele << " ";
    }
 
    return 0;
