@@ -44,7 +44,7 @@ public:
 // }
 
 // flatten linked list using stack
-void flatten(TreeNode *root)
+void flattenII(TreeNode *root)
 {
    if (root == nullptr)
       return;
@@ -64,6 +64,25 @@ void flatten(TreeNode *root)
       }
       node->left = nullptr;
    }
+}
+// first approach using right left and recursive approach
+void doFlattenBTToLL(TreeNode *root, TreeNode *&prev)
+{
+   if (root == nullptr)
+      return;
+   doFlattenBTToLL(root->right, prev);
+   doFlattenBTToLL(root->left, prev);
+   // no first point the node right to prev
+   root->right = prev;
+   // and then point node left to null
+   root->left = nullptr;
+   // now change your prev to current node
+   prev = root;
+}
+void flattenI(TreeNode *root)
+{
+   TreeNode *prev = nullptr;
+   doFlattenBTToLL(root, prev);
 }
 void printLinkedList(TreeNode *root)
 {
@@ -86,7 +105,7 @@ int main()
    root->left->right = new TreeNode(5);
    root->right->left = new TreeNode(6);
    root->right->right = new TreeNode(7);
-   flatten(root);
+   flattenI(root);
 
    // Print the linked list
    printLinkedList(root);
