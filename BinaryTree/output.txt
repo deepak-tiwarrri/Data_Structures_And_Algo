@@ -1,1 +1,1 @@
-Node found with value: 2
+Floor: 10, Ceil: 12

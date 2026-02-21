@@ -40,8 +40,8 @@ int main()
    root->left->right = new TreeNode(3);
    root->left->left->left = new TreeNode(4);
    root->left->left->right = new TreeNode(4);
-   TreeNode *res = lowestCommmonAncestor();
-   cout << res->data << endl;
-   cout << endl;
+   // TreeNode *res = lowestCommmonAncestor();
+   // cout << res->data << endl;
+   // cout << endl;
    return 0;
 }
