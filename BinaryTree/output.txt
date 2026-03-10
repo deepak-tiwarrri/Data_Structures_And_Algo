@@ -1,1 +1,1 @@
-time to burn:4
+[3, 3]
