@@ -60,6 +60,43 @@ vector<int> morrisTraversal(TreeNode *root)
    }
    return ans;
 }
+vector<int> morrisTraversalII(TreeNode *root)
+{
+   vector<int> ans;
+   if (root == nullptr)
+      return ans;
+   TreeNode *curr = root;
+   while (curr)
+   {
+      if (curr->left == nullptr)
+      {
+         ans.push_back(curr->data);
+         curr = curr->right;
+      }
+      else
+      {
+         TreeNode *prevNode = curr->left;
+         while (prevNode->right != nullptr && prevNode->right != curr)
+         {
+            prevNode = prevNode->right;
+         }
+         // if prevNode right is nullptr
+         if (prevNode->right == nullptr)
+         {
+            prevNode->right = curr;
+            // stablish the link and move the curr to left;
+            curr = curr->left;
+         }
+         else
+         {
+            prevNode->right = nullptr;
+            ans.push_back(curr->data);
+            curr = curr->right;
+         }
+      }
+   }
+   return ans;
+}
 int main()
 {
    TreeNode *root = new TreeNode(1);

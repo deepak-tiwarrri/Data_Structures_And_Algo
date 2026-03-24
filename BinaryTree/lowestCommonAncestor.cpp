@@ -17,6 +17,8 @@ TreeNode *lowestCommmonAncestor(TreeNode *p, TreeNode *q, TreeNode *root)
    TreeNode *left = lowestCommmonAncestor(p, q, root->left);
    TreeNode *right = lowestCommmonAncestor(p, q, root->right);
 
+   // if(left && right) return root;
+   // return left? left: right;
    if (left == nullptr)
    {
       return right;
