@@ -5,7 +5,7 @@ int main()
    // code here
 
    int n, m;
-
+   cin >> n >> m;
    vector<int> adjList[n + 1];
    for (int i = 0; i < m; i++)
    {
@@ -14,13 +14,13 @@ int main()
       adjList[u].push_back(v);
       adjList[v].push_back(u);
    }
-
-   for (auto &it : adjList)
+   for (int i = 0; i <= sizeof(adjList) / sizeof(adjList[0]); i++)
    {
-      for (int i = 0; i < it.size(); i++)
+      for (auto &it : adjList[i])
       {
-         cout << it[i];
+         cout << it << " ";
       }
+      cout << endl;
    }
    return 0;
 }
