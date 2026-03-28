@@ -6,6 +6,8 @@ vector<int> bfsTraversal(int v, vector<vector<int>> &adj)
     vector<int> vis(v, 0);
     vis[0] = 1;
     queue<int> q;
+    //use the same binary tree logic but we will have visited array to check
+    // apart from it everything is same
     q.push(0);
     while (!q.empty())
     {
