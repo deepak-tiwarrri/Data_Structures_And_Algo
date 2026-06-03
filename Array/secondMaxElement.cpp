@@ -21,6 +21,19 @@ int secondMaxElement(const vector<int> &arr)
    }
    return secondMaxEle == INT_MIN ? -1 : secondMaxEle; // Placeholder return
 }
+//optimal approach using single pass
+int secondMaxElementII(vector<int> &nums){
+   int maxEle = INT_MIN;
+   int secondMaxEle = -1;
+   for(auto &ele:nums){
+      if(ele>maxEle){
+         secondMaxEle = maxEle;
+         maxEle = ele;
+      }else if(ele>=secondMaxEle && ele<maxEle) secondMaxEle = ele;
+   }
+   // return secondMaxEle==INT_MIN?-1:secondMaxEle;
+   return secondMaxEle;
+}
 
 int main()
 {
@@ -33,7 +46,8 @@ int main()
       cin >> arr[i];
    }
 
-   int result = secondMaxElement(arr);
+   // int result = secondMaxElement(arr);
+   int result = secondMaxElementII(arr);
    cout << result << endl;
    return 0;
 }
