@@ -18,21 +18,60 @@ using namespace  std;
         }
         return low;
     }
-int main(){
-   //code here
-   int n,threshold;
-   cin>>n>>threshold;
-   vector<int> nums;
-   for (int i = 0; i < n; i++)
-   {
-      int x;
-      cin >> x;
-      nums.push_back(x);
-   }
-   // bool isRotated = searchInARotatedSortedArrayII(nums,key);
-   // cout<<isRotated<<endl;
-   int result = smallestDivisor(nums, threshold);
-   cout << result;    
 
-    return 0;
-}
+    class Solution
+    {
+    public:
+        int findMaxElement(vector<int> &nums)
+        {
+            int maxi = INT_MIN;
+            for (auto &ele : nums)
+            {
+                maxi = max(maxi, ele);
+            }
+            return maxi;
+        }
+        int findThreshold(vector<int> &nums,int divisor){
+            int sum =0;
+            for(auto &ele:nums){
+                sum += ceil((double)(ele) / divisor);
+            }
+            return sum;
+        }
+        int smallestDivisor(vector<int> &nums, int threshold)
+        {
+            int maxi = *max_element(nums.begin(), nums.end());
+            int low = 1;
+            int high = maxi;
+            while(low<=high){
+                int mid = low + (high-low)/2;
+                if(findThreshold(nums,mid)<=threshold){
+                    high = mid - 1;
+                }else{
+                    low = mid + 1;
+                }
+            }
+            return low;
+        }
+    };
+    int main()
+    {
+        // code here
+        int n, threshold;
+        cin >> n >> threshold;
+        vector<int> nums;
+        for (int i = 0; i < n; i++)
+        {
+            int x;
+            cin >> x;
+            nums.push_back(x);
+        }
+        // bool isRotated = searchInARotatedSortedArrayII(nums,key);
+        // cout<<isRotated<<endl;
+        // int result = smallestDivisor(nums, threshold);
+        Solution sol;
+        int result = sol.smallestDivisor(nums, threshold);
+        cout << result;
+
+        return 0;
+    }

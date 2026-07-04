@@ -1,1 +1,6 @@
-4 7 
+i: 1sum: 17
+i: 2sum: 10
+i: 3sum: 7
+i: 4sum: 7
+i: 5sum: 5
+5
