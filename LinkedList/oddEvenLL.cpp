@@ -54,6 +54,36 @@ void printNode(Node *head)
    cout << "null";
    cout << endl;
 }
+void pushLLValueToArr(Node* head,vector<int> &ans,bool isEven=false){
+   Node* temp;
+   if(isEven) temp = head->next;
+   else temp = head;
+   while(temp!=nullptr && temp->next!=nullptr){
+      ans.push_back(temp->data);
+      temp = temp->next->next;
+   }
+     if(temp!=nullptr){
+      ans.push_back(temp->data);
+   }
+}
+Node* oddEvenLL(Node* head){
+   //first put odd index into the array
+   //and then put even index into the array
+   if(head==nullptr || head->next==nullptr){
+      return head;
+   }
+   vector<int> ans;
+   pushLLValueToArr(head,ans,false);
+   pushLLValueToArr(head,ans,true);
+   Node* temp = head;
+   int i=0;
+   while(temp!=nullptr){
+      
+      temp->data = ans[i++]; 
+      temp = temp->next;
+   }
+   return head;
+}
 Node *oddEvenList(Node *head)
 {
    if (head == nullptr || head->next == nullptr)
@@ -85,7 +115,8 @@ int main()
    }
 
    Node *head = convertArr2all(arr);
-   head = oddEvenList(head);
+   // head = oddEvenList(head);
+   head = oddEvenLL(head);
    printNode(head);
 
    return 0;

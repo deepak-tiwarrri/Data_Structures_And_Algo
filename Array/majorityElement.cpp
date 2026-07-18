@@ -22,6 +22,27 @@ int majorityElement(vector<int> &nums)
    }
    return ele;
 }
+int majorityElementExample(vector<int> &nums){
+   //brute force
+// Input: nums = [7, 0, 0, 1, 7, 7, 2, 7, 7]
+// Output: 7
+// Explanation:
+// The number 7 appears 5 times in the 9 sized array
+// Example 2
+// Input: nums = [1, 1, 1, 2, 1, 2]
+// Output: 1
+unordered_map<int,int> mpp;
+int n = nums.size();
+for(int i=0;i<nums.size();i++){
+   mpp[nums[i]]++;
+}
+for(auto &it:mpp){
+   if(it.second>n/2){
+      return it.first;
+   }
+}
+return -1;
+}
 int main()
 {
    // code here
@@ -34,7 +55,7 @@ int main()
       cin >> x;
       nums.push_back(x);
    }
-   int res = majorityElement(nums);
+   int res = majorityElementExample(nums);
    cout << res << endl;
 
    return 0;
