@@ -21,39 +21,21 @@ vector<int> interSectionArray(vector<int> &nums1, vector<int> &nums2, int n, int
    // }
    // return ans;
    vector<int> ans;
-   int visited[m] = {0};
-   for (int i = 0; i < n; i++)
+   int i=0;
+   int j=0;
+   while (i<n && j<m)
    {
-      for (int j = 0; j < m; j++)
-      {
-         if (nums1[i] == nums2[j] && visited[j] == 0)
-         {
-            ans.push_back(nums1[i]);
-            // not visited should be mark 1
-            visited[j] = 1;
-            break;
-         }
-         if (nums2[j] > nums1[i])
-            break;
+      if(nums1[i]<nums2[j])
+         i++;
+      else if(nums2[j]<nums1[i])
+         j++;
+      else {
+         ans.push_back(nums1[i]);
+         i++;
+         j++;
       }
    }
    return ans;
-
-   // int i=0;
-   // int j=0;
-   // while (i<n && j<m)
-   // {
-   //    if(nums1[i]<nums2[j])
-   //       i++;
-   //    else if(nums2[j]<nums1[i])
-   //       j++;
-   //    else {
-   //       ans.push_back(nums1[i]);
-   //       i++;
-   //       j++;
-   //    }
-   // }
-   // return ans;
 }
 int main()
 {
@@ -70,6 +52,10 @@ int main()
       int y;
       cin>>y;
       nums2.push_back(y);
+   }
+   vector<int> ans  = interSectionArray(nums1,nums2,n,m);
+   for(auto &it:ans){
+      cout<<it<<" ";
    }
    
    return 0;
