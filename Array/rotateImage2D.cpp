@@ -37,6 +37,26 @@ void rotateMatrix(vector<vector<int>> &matrix)
       reverse(matrix[i].begin(), matrix[i].end());
    }
 }
+void rotateII(vector<vector<int>> &matrix)
+{
+   int n = matrix.size();
+   int m = matrix[0].size();
+   vector<vector<int>> ans(n, vector<int>(m, 0));
+   for (int i = 0; i < n; i++)
+   {
+      for (int j = 0; j < i; j++)
+      {
+         if (i == j)
+            continue;
+         else
+            swap(matrix[i][j], matrix[j][i]);
+      }
+   }
+   for (int i = 0; i < n; i++)
+   {
+      reverse(matrix[i].begin(), matrix[i].end());
+   }
+}
 int main()
 {
    // code here
@@ -54,7 +74,7 @@ int main()
       }
       matrix.push_back(row);
    }
-   rotateMatrix(matrix);
+   rotateII(matrix);
    for (int i = 0; i < n; i++)
    {
       for (int j = 0; j < m; j++)
