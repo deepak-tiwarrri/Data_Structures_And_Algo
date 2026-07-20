@@ -11,6 +11,7 @@ vector<int> rearrangeBySign(vector<int> &nums)
    //    else
    //       neg.push_back(nums[i]);
    // }
+
    // // now go to the half of the nums.size()
    // for (int i = 0; i < nums.size() / 2; i++)
    // {
@@ -46,11 +47,35 @@ vector<int> rearrangeBySign(vector<int> &nums)
    }
    return ans;
 }
+vector<int> rearrangeArray(vector<int> &nums)
+{
+   // cout << nums.size() / 2 << endl;
+   vector<int> posArr, negArr;
+   for (auto &it : nums)
+   {
+      if (it > 0)
+      {
+         posArr.push_back(it);
+      }
+      else
+      {
+         negArr.push_back(it);
+      }
+   }
+   for (int i = 0; i < nums.size() / 2; i++)
+   {
+      nums[2 * i] = posArr[i];
+      nums[2 * i + 1] = negArr[i];
+   }
+   return nums;
+}
 int main()
 {
    // code here
    int n;
    cin >> n;
+   cout << "Hello world";
+   cout << endl;
    vector<int> nums;
    for (int i = 0; i < n; ++i)
    {
@@ -58,7 +83,7 @@ int main()
       cin >> x;
       nums.push_back(x);
    }
-   vector<int> res = rearrangeBySign(nums);
+   vector<int> res = rearrangeArray(nums);
    for (auto &it : res)
    {
       cout << it << " ";
