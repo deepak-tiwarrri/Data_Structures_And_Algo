@@ -7,7 +7,7 @@ int main()
    cin >> n >> m;
    // graph here
    // store in adjustancy matrix
-   int adj[n + 1][m + 1];
+   int adj[n + 1][n + 1]= {0};
    for (int i = 0; i < m; i++)
    {
       int u, v;
@@ -15,9 +15,10 @@ int main()
       adj[u][v] = 1;
       adj[v][u] = 1;
    }
-   for (int i = 0; i < m; i++)
+   for (int i = 1; i <= n; i++)
+   //now we are moving from 1 to n and code is fixed now
    {
-      for (int j = 0; j < m; j++)
+      for (int j = 1; j <=n; j++)
       {
          cout << adj[i][j] << " ";
       }
