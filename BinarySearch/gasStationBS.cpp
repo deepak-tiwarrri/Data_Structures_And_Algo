@@ -77,6 +77,31 @@ long double minimiseMaxDistance(vector<int> &nums, int k)
    }
    return high; // becaue answer are store in high first then go the left side for further calculation
 }
+//brute force approach
+long double miniMaxDistanceGasStation(vector<int> &nums,int k){
+   int n = nums.size();
+   vector<int> howManyPlaced(n-1,0);
+   for(int gas=1;gas<=k;gas++){
+      long double  maxValue = -1;
+      long double maxIndex = -1;
+      for(int i=0;i<n;i++){
+         long double diffValue = nums[i+1] - nums[i];
+         long double secLength = diffValue/(long double)howManyPlaced[i+1];
+         if(maxValue<secLength){
+            maxValue = secLength;
+            maxIndex = i;
+         }
+      }
+       howManyPlaced[maxIndex]++;
+   }
+   long double maxAns = -1;
+   for(int i=0;i<n-1;i++){
+      long double diffValue = nums[i+1]-nums[i];
+      long double secLength = diffValue/howManyPlaced[i]+1;
+      maxAns = max(maxAns,secLength);
+   }
+   return maxAns;
+}
 int main()
 {
    // code here

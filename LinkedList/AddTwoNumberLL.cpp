@@ -86,7 +86,6 @@ int main()
       cin >> x;
       arr.push_back(x);
    }
-m
    Node *head = convertArr2all(arr);
    // Node* head = NULL;
    printNode(head);

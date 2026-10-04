@@ -1,3 +1,6 @@
+#include <iostream>
+#include <vector>
+using namespace std;
 class Node
 {
 public:
@@ -21,23 +24,23 @@ public:
       prev = nullptr;
    }
 };
-#include <bits/stdc++.h>
-using namespace std;
+
 Node *insertBeforeHead(Node *head, int val)
 {
    Node *newNode = new Node(val, head, nullptr);
-   head->prev = newNode;
+   if (head != nullptr)
+      head->prev = newNode;
    return newNode;
 }
 Node *insertBeforeTail(Node *head, int k)
 {
-   // Write your code here
    Node *newNode = new Node(k);
 
    if (head == nullptr)
       return newNode;
-   if(head->next==nullptr){
-      return insertBeforeHead(head,k);
+   if (head->next == nullptr)
+   {
+      return insertBeforeHead(head, k);
    }
    Node *temp = head;
    while (temp->next != nullptr)
@@ -51,18 +54,27 @@ Node *insertBeforeTail(Node *head, int k)
 }
 Node *deleteHead(Node *head)
 {
-   if (head == nullptr || head->next == nullptr)
+   if (head == nullptr)
       return nullptr;
+   if (head->next == nullptr)
+   {
+      delete head;
+      return nullptr;
+   }
    Node *prev = head;
    head = head->next;
    prev->next = nullptr;
    head->prev = nullptr;
-   free(prev);
+   delete prev;
    return head;
 }
 Node *deleteTail(Node *head)
 {
-   if (head == nullptr || head->next == nullptr)
+   if (head == nullptr)
+   {
+      return nullptr;
+   }
+   if (head->next == nullptr)
    {
       delete head;
       return nullptr;
@@ -79,8 +91,8 @@ Node *deleteTail(Node *head)
 }
 Node *deleteKthElement(Node *head, int k)
 {
-   if (head == nullptr)
-      return nullptr;
+   if (head == nullptr || k <= 0)
+      return head;
    int cnt = 0;
    Node *temp = head;
    while (temp != nullptr && cnt < k)
@@ -90,10 +102,15 @@ Node *deleteKthElement(Node *head, int k)
          break;
       temp = temp->next;
    }
+   if (temp == nullptr)
+      return head;
    Node *prev = temp->prev;
    Node *front = temp->next;
    if (prev == nullptr && front == nullptr)
+   {
+      delete temp;
       return nullptr;
+   }
    else if (prev == nullptr)
       return deleteHead(head);
    else if (front == nullptr)
@@ -107,14 +124,23 @@ Node *deleteKthElement(Node *head, int k)
 }
 void deleteNode(Node *temp)
 {
-   // given node delete that node
+   if (temp == nullptr)
+      return;
    Node *prev = temp->prev;
    Node *front = temp->next;
+   if (prev == nullptr)
+   {
+      if (front != nullptr)
+         front->prev = nullptr;
+      delete temp;
+      return;
+   }
    if (front == nullptr)
    {
       prev->next = nullptr;
       temp->prev = nullptr;
       delete temp;
+      return;
    }
    prev->next = front;
    front->prev = prev;
@@ -124,9 +150,11 @@ void deleteNode(Node *temp)
 }
 Node *convert2DLL(vector<int> &arr)
 {
+   if (arr.empty())
+      return nullptr;
    Node *head = new Node(arr[0]);
    Node *temp = head;
-   for (int i = 1; i < arr.size(); i++)
+   for (int i = 1; i < (int)arr.size(); i++)
    {
       Node *newNode = new Node(arr[i], nullptr, temp);
       temp->next = newNode;
@@ -144,7 +172,6 @@ void printDLL(Node *head)
 }
 int main()
 {
-   // code here
    int n;
    cin >> n;
    vector<int> arr;
@@ -155,13 +182,7 @@ int main()
       arr.push_back(x);
    }
    Node *head = convert2DLL(arr);
-   //  Node* temp = insertAtail(head,20);
-   // head = deleteHead(head);
-   // head = insertAtTail(head,3);
-   // head = deleteKthElement(head, 6);
-   // deleteNode(head->next);
-   // head = insertBeforeHead(head, 39);
-   head = insertBeforeTail(head,20);
+   head = insertBeforeTail(head, 20);
    printDLL(head);
    return 0;
 }

@@ -99,22 +99,66 @@ void mergeSortedArray(int arr1[], int arr2[], int n, int m)
       gap = (gap / 2) + (gap % 2);
    }
 }
+#include<bits/stdc++.h>
+using namespace std;
+void swapIfGreater(vector<long long> &arr1,vector<long long> &arr2,int ind1,int ind2){
+	if(arr1[ind1]>arr2[ind2]){
+		swap(arr1[ind1],arr2[ind2]);
+	}
+}
+
+void mergeTwoSortedArraysWithoutExtraSpace(vector<long long> &arr1, vector<long long> &arr2){
+	// Write your code here.
+	long long n = arr1.size();
+	long long m = arr2.size();
+	long long len = n+m;
+	long long gap = (len%2) + (len/2);
+	while(gap>0){
+		int  left = 0;
+		int right = gap+left;
+		while(right<len){
+			if(left<n && right>=n){
+				swapIfGreater(arr1,arr2,left,right-n);
+			}else if(left>=n){
+				swapIfGreater(arr2,arr2,left-n,right-n);
+			}else{
+				swapIfGreater(arr1,arr1,left,right);
+			}
+			left++,right++;
+		}
+		if(gap==1) break;
+		gap = (gap%2) + (gap/2);
+	}
+}
 int main()
 {
    // code here
    int n, m;
    cin >> n >> m;
-   int arr1[n], arr2[m];
-   for (int i = 0; i < n; i++)
-   {
-      cin >> arr1[i];
+   // int arr1[n], arr2[m];
+   // for (int i = 0; i < n; i++)
+   // {
+   //    cin >> arr1[i];
+   // }
+   // for (int i = 0; i < m; i++)
+   // {
+   //    cin >> arr2[i];
+   // }
+   vector<long long> arr1,arr2;
+   for(int i=0;i<n;i++){
+      int x;
+      cin>>x;
+      arr1.push_back(x);
    }
-   for (int i = 0; i < m; i++)
-   {
-      cin >> arr2[i];
+   for(int i=0;i<m;i++){
+      int x;
+      cin>>x;
+      arr2.push_back(x);
    }
-
-   mergeSortedArray(arr1, arr2, n, m);
+   vector<vector<int>> ans;
+   ans.push_back({1,2});
+   cout<<ans.back()[1]<<endl;
+   mergeTwoSortedArraysWithoutExtraSpace(arr1, arr2);
    for (int i = 0; i < n; i++)
    {
       cout << arr1[i] << " ";
