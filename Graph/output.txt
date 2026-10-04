@@ -1,1 +1,1 @@
-2 result printed
+ no of island: 1
