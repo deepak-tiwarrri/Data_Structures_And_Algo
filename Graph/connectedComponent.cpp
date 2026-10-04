@@ -19,7 +19,7 @@ private:
       for (int i = 0; i < edges.size(); i++)
       {
 
-         int u = edges[i][0];
+         int u = edges[i][0]; 
          int v = edges[i][1];
          adjList[u].push_back(v);
          adjList[v].push_back(u);
@@ -35,9 +35,9 @@ public:
       int cnt = 0;
       for (int i = 0; i < V; i++)
       {
-         if (!vis[i])
+         if (!vis[i]) 
          {
-            dfsTraversal(V, adjList, vis, i);
+            dfsTraversal(V, adjList, vis, i); 
             cnt++;
          }
       }

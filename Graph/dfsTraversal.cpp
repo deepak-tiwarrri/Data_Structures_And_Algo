@@ -1,45 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
-vector<int> dfsTraversal(vector<vector<int>> &adjList, int &startNode, vector<int> &visArr, vector<int> &ans)
+void dfsTraversal(vector<int> &visited, vector<vector<int>> &adjList, int startNode, vector<int> &result)
 {
-   // so for example start node is 1
-   visArr[startNode] = 1;
-   ans.push_back(startNode);
-   for (auto &ele : adjList[startNode])
-   {
-      if (!visArr[ele])
-      {
-         dfsTraversal(adjList, ele, visArr, ans);
+   visited[startNode] = 1;
+   result.push_back(startNode);
+   for(auto &neighbor:adjList[startNode]){
+      if(!visited[neighbor]){
+         dfsTraversal(visited,adjList,neighbor,result);
       }
    }
 }
-vector<vector<int>> buildAdjList(int &n, int &m)
+void buildAdjList(vector<vector<int>> &edges, vector<vector<int>> &adjList)
 {
-   vector<vector<int>> ans(n);
-   for (int i = 0; i < n; i++)
+   for (auto &neighbor : edges)
    {
-      int u, v;
-      cin >> u >> v;
-      ans[v].push_back(u);
-      ans[u].push_back(v);
+      auto u = neighbor[0];
+      auto v = neighbor[1];
+      adjList[u].push_back(v);
+      adjList[v].push_back(u);
    }
-   return ans;
+}
+vector<int> depthOfGraph(int V, int E, vector<vector<int>> &edges)
+{
+   vector<int> visited(V, 0);
+   vector<vector<int>> adjList(V);
+   int startNode = 0;
+   buildAdjList(edges, adjList);
+   vector<int> connectedComponentResult;
+   dfsTraversal(visited, adjList, startNode, connectedComponentResult);
+   return connectedComponentResult;
 }
 
 int main()
 {
    // code here
-   int n, m;
-   cin >> n >> m;
-   vector<int> vis(n, 0);
-   vector<vector<int>> adjList = buildAdjList(n, m);
-   vector<int> dfsPath;
-   int startNode = 1;
-   vector<int> result = dfsTraversal(adjList, startNode, vis, dfsPath);
-   for (auto &it : result)
+   int V, E;
+   cin >> V >> E;
+   vector<vector<int>> edges;
+   for (int i = 0; i < E; i++)
    {
-      cout << it << " ";
+      int u, v;
+      cin >> u >> v;
+      edges.push_back({u, v});
    }
-
+   vector<int> result = depthOfGraph(V, E, edges);
+   for (auto &neighbor : result)
+   {
+      cout << neighbor << " ";
+   }
+   cout << endl;
    return 0;
 }
