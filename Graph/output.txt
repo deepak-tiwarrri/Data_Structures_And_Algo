@@ -1,1 +1,1 @@
-not a bipartite graph
+enclaves present: 3
