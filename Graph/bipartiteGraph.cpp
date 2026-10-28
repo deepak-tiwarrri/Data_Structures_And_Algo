@@ -19,6 +19,7 @@ public:
         }
         return true;
     }
+    
     bool isBipartite(int V, vector<vector<int>> edges)  {
         vector<int> colors(V,-1);
         vector<vector<int>> adjList(V);

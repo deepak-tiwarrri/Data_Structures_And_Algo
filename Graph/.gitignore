@@ -4,3 +4,6 @@
 
 *.json
 /*.json
+.vscode
+input.txt
+output.txt
