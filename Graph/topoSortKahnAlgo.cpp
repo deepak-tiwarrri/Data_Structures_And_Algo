@@ -8,7 +8,9 @@ public:
         vector<int> result;
         vector<int> indegree(V,0);
         for(int i=0;i<V;i++){
-            for(auto &it:adj[i]) indegree[it]++;
+            for(auto &it: adj[i]){
+                indegree[it]++;
+            }
         }
         for(int i=0;i<V;i++){
             if(indegree[i]==0) que.push(i);
@@ -17,11 +19,9 @@ public:
             auto node = que.front();
             que.pop();
             result.push_back(node);
-            for(auto &it:adj[node]){
+            for(auto &it: adj[node]){
                 indegree[it]--;
-                if(indegree[it]==0){
-                    que.push(it);
-                }
+                if(indegree[it]==0) que.push(it);
             }
         }
         return result;
